@@ -15,7 +15,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   const [currentRow, setCurrentRow] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const { wordCandidates, updateWordCandidates, guessHistory } =
-    useWordleSolver("/fiveletterwords.txt", 5);
+    useWordleSolver(`${process.env.PUBLIC_URL}/fiveletterwords.txt`, 5);
 
   const [gameTileStates, setGameTileStates] = useState<GameTileState[][]>(
     [...Array(rowCount).keys()].map(() =>
