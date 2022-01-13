@@ -38,12 +38,12 @@ const GameTile = ({ tileState, setTileState, letter = "" }: GameTileProps) => {
   };
 
   return (
-    <div
+    <input
       className={`c-game-tile c-game-tile--${tileState}`}
+      value={letter}
       onClick={onTileClick}
-    >
-      {letter}
-    </div>
+      readOnly={true}
+    />
   );
 };
 
