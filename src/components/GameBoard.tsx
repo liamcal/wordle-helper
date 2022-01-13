@@ -139,12 +139,9 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
       </div>
       {guessHistory.length > 0 && (
         <div style={{ display: "flex" }}>
-          <textarea
-            rows={25}
-            cols={6}
-            readOnly={true}
-            value={wordCandidates.join("\n")}
-          />
+          <textarea rows={25} cols={6} readOnly={true}>
+            {wordCandidates.join("\n")}
+          </textarea>
         </div>
       )}
     </div>
