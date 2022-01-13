@@ -140,6 +140,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
         )}
       </div>
       <hr />
+      <input ref={input => input && input.focus()} value="" type="hidden"/>
     </div>
   );
 };
