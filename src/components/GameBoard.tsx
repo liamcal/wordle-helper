@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { GameRow } from "./GameRow";
 import { GameTileState } from "./GameTile";
 
@@ -135,12 +140,19 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
         </div>
         {guessHistory.length > 0 && (
           <div style={{ display: "flex" }}>
-            <textarea rows={25} cols={6} readOnly={true} value={wordCandidates.join("\n")}/>
+            <textarea
+              rows={25}
+              cols={6}
+              readOnly={true}
+              value={wordCandidates.join("\n")}
+            />
           </div>
         )}
       </div>
       <hr />
-      <input ref={input => input && input.focus()} value="" type="hidden"/>
+      <div style={{ width: 0, overflow: "hidden" }}>
+        <input ref={(input) => input && input.focus()} value="" />
+      </div>
     </div>
   );
 };
