@@ -118,38 +118,35 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   }, [wordCandidates, guessHistory]);
 
   return (
-    <div>
-      <div className="c-game-board-container">
-        <div className="c-game-board">
-          {[...Array(rowCount).keys()].map((rowNumber: number) => (
-            <GameRow
-              key={`row-${rowNumber}`}
-              tileStates={gameTileStates[rowNumber]}
-              updateTileState={updateTileStateForRow(rowNumber)}
-              wordLength={wordLength}
-              rowNumber={rowNumber}
-              word={words[rowNumber]}
-              isActive={rowNumber === currentRow && !isFinished}
-              onSubmit={() => {
-                if (isCurrentWordComplete) {
-                  submitWord();
-                }
-              }}
-            />
-          ))}
-        </div>
-        {guessHistory.length > 0 && (
-          <div style={{ display: "flex" }}>
-            <textarea
-              rows={25}
-              cols={6}
-              readOnly={true}
-              value={wordCandidates.join("\n")}
-            />
-          </div>
-        )}
+    <div className="c-game-board-container">
+      <div className="c-game-board">
+        {[...Array(rowCount).keys()].map((rowNumber: number) => (
+          <GameRow
+            key={`row-${rowNumber}`}
+            tileStates={gameTileStates[rowNumber]}
+            updateTileState={updateTileStateForRow(rowNumber)}
+            wordLength={wordLength}
+            rowNumber={rowNumber}
+            word={words[rowNumber]}
+            isActive={rowNumber === currentRow && !isFinished}
+            onSubmit={() => {
+              if (isCurrentWordComplete) {
+                submitWord();
+              }
+            }}
+          />
+        ))}
       </div>
-      <hr />
+      {guessHistory.length > 0 && (
+        <div style={{ display: "flex" }}>
+          <textarea
+            rows={25}
+            cols={6}
+            readOnly={true}
+            value={wordCandidates.join("\n")}
+          />
+        </div>
+      )}
     </div>
   );
 };
