@@ -1,0 +1,50 @@
+.c-keyboard {
+  height: 200px;
+  margin: 0 8px;
+  user-select: none;
+}
+
+.c-keyboard-row {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 8px;
+  touch-action: manipulation;
+}
+
+.c-keyboard-spacer {
+  flex: 0.5;
+}
+
+.c-keyboard-key {
+  font-family: inherit;
+  font-weight: bold;
+  border: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+  height: 58px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  background-color: #818384;
+  color: #d7dadc;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+.c-keyboard-key:last-of-type {
+  margin: 0;
+}
+
+.c-keyboard-key--large {
+  flex: 1.5;
+  font-size: 12px;
+}
+
+.c-keyboard-key:disabled {
+    background-color: #3a3a3c;
+    cursor: unset;
+}
