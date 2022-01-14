@@ -54,7 +54,7 @@ const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
   return true;
 };
 
-const useWordleSolver = (wordsFilePath: string, wordLength: number) => {
+const useWordleSolver = (wordLength: number) => {
   const [wordCandidates, setWordCandidates] = useState<string[]>([]);
   const [guessHistory, setGuessHistory] = useState<WordGuess[]>([]);
 
@@ -93,12 +93,12 @@ const useWordleSolver = (wordsFilePath: string, wordLength: number) => {
   };
 
   useEffect(() => {
-    fetch(wordsFilePath)
+    fetch(`${process.env.PUBLIC_URL}/fiveletterwords.txt`)
       .then((res: Response) => res.text())
       .then((text: string) => {
         processWords(text);
       });
-  }, [wordsFilePath]);
+  }, []);
 
   return {
     wordCandidates,

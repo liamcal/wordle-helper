@@ -16,13 +16,13 @@ interface GameBoardProps {
   wordLength: number;
 }
 
+const candidatePlaceholder = "...";
 const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   const [letters, setLetters] = useState("");
   const [currentRow, setCurrentRow] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [selectedCandidate, setSelectedCandidate] = useState("");
-  const { wordCandidates, updateWordCandidates, guessHistory } =
-    useWordleSolver(`${process.env.PUBLIC_URL}/fiveletterwords.txt`, 5);
+  const [selectedCandidate, setSelectedCandidate] = useState(candidatePlaceholder);
+  const { wordCandidates, updateWordCandidates, guessHistory } = useWordleSolver(5);
 
   const [gameTileStates, setGameTileStates] = useState<GameTileState[][]>(
     [...Array(rowCount).keys()].map(() =>
@@ -72,7 +72,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
         letterStates: currentStates,
       });
       safeIncrementRow();
-      setSelectedCandidate("");
+      setSelectedCandidate(candidatePlaceholder);
     }
   }, [
     canSubmit,
@@ -158,9 +158,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
           ))}
         </div>
       </div>
-      <div
-        className="c-candidates-container"
-      >
+      <div className="c-candidates-container">
         {guessHistory.length > 0 ? (
           <>
             <label htmlFor="candidates" className="c-game-text">
@@ -173,7 +171,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
               value={selectedCandidate}
               onChange={onCandidateSelected}
             >
-              <option value="" disabled />
+              <option value={candidatePlaceholder} disabled>{candidatePlaceholder}</option>
               {wordCandidates.map((candidate: string) => (
                 <option key={candidate} value={candidate}>
                   {candidate}
