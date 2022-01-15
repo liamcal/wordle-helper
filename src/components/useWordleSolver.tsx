@@ -93,7 +93,7 @@ const useWordleSolver = (wordLength: number) => {
   };
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/fiveletterwords.txt`)
+    fetch(`${process.env.PUBLIC_URL}/wordlewords.txt`)
       .then((res: Response) => res.text())
       .then((text: string) => {
         processWords(text);
