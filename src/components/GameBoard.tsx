@@ -24,7 +24,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   const [isFinished, setIsFinished] = useState(false);
   const [selectedCandidate, setSelectedCandidate] =
     useState(candidatePlaceholder);
-  const { wordCandidates, updateWordCandidates, guessHistory } =
+  const { wordCandidates, updateWordCandidates, guessHistory, resetSolver } =
     useWordleSolver(5);
 
   const [gameTileStates, setGameTileStates] = useState<GameTileState[][]>(
@@ -128,6 +128,19 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
     );
   };
 
+  const restartGame = () => {
+    setLetters("");
+    setCurrentRow(0);
+    setIsFinished(false);
+    setSelectedCandidate(candidatePlaceholder);
+    setGameTileStates(
+      [...Array(rowCount).keys()].map(() =>
+        [...Array(wordLength).keys()].map(() => GameTileState.UNKNOWN)
+      )
+    );
+    resetSolver();
+  };
+
   useLayoutEffect(() => {
     window.addEventListener("keydown", onKeyDown);
     // Remove event listeners on cleanup
@@ -144,7 +157,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
 
   return (
     <div className="c-game">
-      <WordleHeader />
+      <WordleHeader onRestartClick={restartGame} />
       <div className="c-game-board-container">
         <div
           className="c-game-board"

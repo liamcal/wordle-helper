@@ -55,6 +55,7 @@ const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
 };
 
 const useWordleSolver = (wordLength: number) => {
+  const [loadedWords, setLoadedWords] = useState<string[]>([]);
   const [wordCandidates, setWordCandidates] = useState<string[]>([]);
   const [guessHistory, setGuessHistory] = useState<WordGuess[]>([]);
 
@@ -89,8 +90,15 @@ const useWordleSolver = (wordLength: number) => {
   };
 
   const processWords = (rawWords: string) => {
-    setWordCandidates(rawWords.trimEnd().split("\n"));
+    const processedWords = rawWords.trimEnd().split("\n");
+    setLoadedWords(processedWords);
+    setWordCandidates(processedWords.slice());
   };
+
+  const resetSolver = () => {
+    setWordCandidates(loadedWords.slice());
+    setGuessHistory([]);
+  }
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/wordlewords.txt`)
@@ -104,6 +112,7 @@ const useWordleSolver = (wordLength: number) => {
     wordCandidates,
     updateWordCandidates,
     guessHistory,
+    resetSolver,
   };
 };
 
