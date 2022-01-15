@@ -6,10 +6,11 @@ import React, {
 } from "react";
 import { GameRow } from "./GameRow";
 import { GameTileState } from "./GameTile";
-
-import "./gameboard.scss";
 import { useWordleSolver } from "./useWordleSolver";
 import { GameKeyboard } from "./GameKeyboard";
+import { WordleHeader } from "./WordleHeader";
+
+import "./gameboard.scss";
 
 interface GameBoardProps {
   rowCount: number;
@@ -21,8 +22,10 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   const [letters, setLetters] = useState("");
   const [currentRow, setCurrentRow] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [selectedCandidate, setSelectedCandidate] = useState(candidatePlaceholder);
-  const { wordCandidates, updateWordCandidates, guessHistory } = useWordleSolver(5);
+  const [selectedCandidate, setSelectedCandidate] =
+    useState(candidatePlaceholder);
+  const { wordCandidates, updateWordCandidates, guessHistory } =
+    useWordleSolver(5);
 
   const [gameTileStates, setGameTileStates] = useState<GameTileState[][]>(
     [...Array(rowCount).keys()].map(() =>
@@ -141,6 +144,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
 
   return (
     <div className="c-game">
+      <WordleHeader />
       <div className="c-game-board-container">
         <div
           className="c-game-board"
@@ -171,7 +175,9 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
               value={selectedCandidate}
               onChange={onCandidateSelected}
             >
-              <option value={candidatePlaceholder} disabled>{candidatePlaceholder}</option>
+              <option value={candidatePlaceholder} disabled>
+                {candidatePlaceholder}
+              </option>
               {wordCandidates.map((candidate: string) => (
                 <option key={candidate} value={candidate}>
                   {candidate}
