@@ -39,7 +39,13 @@ const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
     if (!matchState) {
       return false;
     }
-    if (guess.bannedLetters.includes(letter)) {
+
+    // The same letter can be Correct in one position, but Absent in another
+    // Exclude a word if it has a letter that is absent, unless when that letter is marked as correct in that position
+    if (
+      guess.letterStates[i] !== GameTileState.CORRECT &&
+      guess.bannedLetters.includes(letter)
+    ) {
       return false;
     }
   }
@@ -49,6 +55,7 @@ const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
       (requiredLetter: string) => !candidateLetters.includes(requiredLetter)
     )
   ) {
+
     return false;
   }
   return true;
@@ -98,7 +105,7 @@ const useWordleSolver = (wordLength: number) => {
   const resetSolver = () => {
     setWordCandidates(loadedWords.slice());
     setGuessHistory([]);
-  }
+  };
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/wordlewords.txt`)
