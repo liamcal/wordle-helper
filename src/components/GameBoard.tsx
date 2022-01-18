@@ -4,6 +4,7 @@ import React, {
   useLayoutEffect,
   useState,
 } from "react";
+import useResizeObserver from "use-resize-observer";
 import { GameRow } from "./GameRow";
 import { GameTileState } from "./GameTile";
 import { useWordleSolver } from "./useWordleSolver";
@@ -32,6 +33,15 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
       [...Array(wordLength).keys()].map(() => GameTileState.UNKNOWN)
     )
   );
+
+  const [boardWidth, setBoardWidth] = useState(0);
+  const { ref: boardRef } = useResizeObserver<HTMLDivElement>({
+    onResize: ({ height: boardHeight }) => {
+      if (boardHeight) {
+        setBoardWidth(boardHeight / 1.2 + 20);
+      }
+    },
+  });
 
   const updateTileStateForRow =
     (row: number) => (tile: number) => (newState: GameTileState) => {
@@ -161,7 +171,8 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
       <div className="c-game-board-container">
         <div
           className="c-game-board"
-          style={{ width: "350px", height: "420px" }}
+          ref={boardRef}
+          style={{ width: boardWidth }}
         >
           {[...Array(rowCount).keys()].map((rowNumber: number) => (
             <GameRow
