@@ -41,10 +41,12 @@ const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
     }
 
     // The same letter can be Correct in one position, but Absent in another
-    // Exclude a word if it has a letter that is absent, unless when that letter is marked as correct in that position
+    // Alternatively, a guess that uses the same letter twice can have the first marked as Present and the next Absent
+    // Exclude a word if it has a letter that is Absent, unless when that letter is marked as Correct in that position, or Present anywhere
     if (
+      guess.bannedLetters.includes(letter) &&
       guess.letterStates[i] !== GameTileState.CORRECT &&
-      guess.bannedLetters.includes(letter)
+      !guess.requiredLetters.includes(letter)
     ) {
       return false;
     }
@@ -55,7 +57,6 @@ const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
       (requiredLetter: string) => !candidateLetters.includes(requiredLetter)
     )
   ) {
-
     return false;
   }
   return true;
