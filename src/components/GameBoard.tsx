@@ -4,7 +4,7 @@ import React, {
   useLayoutEffect,
   useState,
 } from "react";
-import useResizeObserver from "use-resize-observer";
+import useResizeObserver from "use-resize-observer/polyfilled";
 import { GameRow } from "./GameRow";
 import { GameTileState } from "./GameTile";
 import { useWordleSolver } from "./useWordleSolver";
