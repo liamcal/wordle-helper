@@ -48,11 +48,16 @@
 
 @media (max-width: 420px) {
   .c-game-header__title {
-    font-size: 22px;
-    letter-spacing: 0.1rem;
+    font-size: 28px;
   }
-
   .c-game-subheading {
     font-size: small;
+  }
+}
+
+@media (max-width: 360px) {
+  .c-game-header__title {
+    font-size: 22px;
+    letter-spacing: 0.1rem;
   }
 }

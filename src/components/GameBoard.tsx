@@ -210,7 +210,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
         {guessHistory.length > 0 ? (
           <>
             <label htmlFor="candidates" className="c-game-text">
-              {hasSolution ? "THE WORDLE IS: ": "WORD CANDIDATES: "}
+              {hasSolution ? "THE WORDLE IS: ": "WORDLE CANDIDATES: "}
             </label>
             <select
               name="candidates"
