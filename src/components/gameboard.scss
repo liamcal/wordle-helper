@@ -16,7 +16,8 @@
 .c-candidates-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 12px;
+  margin: 0 12px 12px 12px;
+  align-items: center;
 }
 
 .c-candidates {
@@ -43,7 +44,6 @@
   box-sizing: border-box;
   height: 100%;
   max-height: 420px;
-  // width: 350px;
 }
 
 .c-game-row {
@@ -118,4 +118,14 @@
 
 .c-submit-button:disabled {
   background-color: #3a3a3c;
+}
+
+@media (max-width: 420px) {
+  .c-game-text {
+    font-size: large;
+  }
+
+  .c-candidates {
+    font-size: large;
+  }
 }

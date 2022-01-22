@@ -1,0 +1,58 @@
+.c-game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  color: #d7dadc;
+  border-bottom: 1px solid #3a3a3c;
+}
+
+.c-game-header__item {
+  display: flex;
+  justify-content: center;
+  flex: 0 1;
+}
+
+.c-game-header__item--fill {
+  flex: 1 1;
+}
+
+.c-game-header__title {
+  font-weight: bold;
+  font-size: 36px;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.c-game-subheading {
+  color: #d7dadc;
+  font-size: medium;
+  font-style: italic;
+  margin-block-start: 8px;
+  margin-block-end: 8px;
+}
+
+.c-game-subheading a {
+  font-style: italic;
+}
+
+.c-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+@media (max-width: 420px) {
+  .c-game-header__title {
+    font-size: 22px;
+    letter-spacing: 0.1rem;
+  }
+
+  .c-game-subheading {
+    font-size: small;
+  }
+}

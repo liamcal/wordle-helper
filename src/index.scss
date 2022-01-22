@@ -6,8 +6,6 @@ body {
   margin: 0;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   height: 100%;
   background-color: #121213;
   padding: 0;
@@ -25,4 +23,8 @@ div#root {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a {
+  color: #d7dadc
 }

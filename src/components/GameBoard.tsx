@@ -7,11 +7,13 @@ import React, {
 import useResizeObserver from "use-resize-observer/polyfilled";
 import { GameRow } from "./GameRow";
 import { GameTileState } from "./GameTile";
-import { useWordleSolver } from "./useWordleSolver";
+import { useWordleSolver } from "./Hooks/useWordleSolver";
 import { GameKeyboard } from "./GameKeyboard";
-import { WordleHeader } from "./WordleHeader";
+import { GameHeader } from "./GameHeader";
 
 import "./gameboard.scss";
+import { GameOverlay } from "./GameOverlay";
+import { HelpContent } from "./HelpContent";
 
 interface GameBoardProps {
   rowCount: number;
@@ -23,6 +25,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   const [letters, setLetters] = useState("");
   const [currentRow, setCurrentRow] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [isInfoShowing, setIsInfoShowing] = useState(false);
   const [selectedCandidate, setSelectedCandidate] =
     useState(candidatePlaceholder);
   const { wordCandidates, updateWordCandidates, guessHistory, resetSolver } =
@@ -167,7 +170,10 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
 
   return (
     <div className="c-game">
-      <WordleHeader onRestartClick={restartGame} />
+      <GameHeader
+        onInfoClick={() => setIsInfoShowing(true)}
+        onRestartClick={restartGame}
+      />
       <div className="c-game-board-container">
         <div
           className="c-game-board"
@@ -219,6 +225,14 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
         onEnterClick={submitWord}
         isEnterKeyDisabled={!canSubmit}
       />
+
+      <GameOverlay
+        isVisible={isInfoShowing}
+        heading="ABOUT WORDLE-HELPER"
+        onClose={() => setIsInfoShowing(false)}
+      >
+        <HelpContent />
+      </GameOverlay>
     </div>
   );
 };

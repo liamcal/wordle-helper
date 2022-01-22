@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameTileState } from "./GameTile";
+import { GameTileState } from "../GameTile";
 
 interface WordGuess {
   word: string;

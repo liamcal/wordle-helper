@@ -1,0 +1,76 @@
+.c-overlay {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  background-color: #121213;
+  animation: SlideIn 100ms linear;
+  z-index: 2000;
+  text-align: left;
+}
+
+.c-overlay--visible {
+  display: flex;
+}
+
+.c-overlay--closing {
+  display: flex;
+  animation: SlideOut 150ms linear;
+}
+
+.c-overlay__content {
+  position: relative;
+  color: #d7dadc;
+  padding: 0 32px;
+  max-width: 500px;
+  width: 100%;
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-overlay-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 16px;
+}
+
+.c-overlay-heading__text {
+  font-size: 16px;
+}
+
+.c-overlay-button {
+  position: absolute;
+  right: 0;
+}
+
+@keyframes SlideIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes SlideOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+}
