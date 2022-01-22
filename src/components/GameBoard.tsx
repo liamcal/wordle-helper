@@ -31,6 +31,8 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   const { wordCandidates, updateWordCandidates, guessHistory, resetSolver } =
     useWordleSolver(5);
 
+  const hasSolution = wordCandidates.length === 1;
+
   const [gameTileStates, setGameTileStates] = useState<GameTileState[][]>(
     [...Array(rowCount).keys()].map(() =>
       [...Array(wordLength).keys()].map(() => GameTileState.UNKNOWN)
@@ -133,13 +135,19 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
   );
 
   const onCandidateSelected = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedWord = event.target.value;
-    setSelectedCandidate(selectedWord);
-    setLetters(
-      (currentLetters: string) =>
-        currentLetters.slice(0, currentRow * wordLength) + selectedWord
-    );
+    selectWord(event.target.value);
   };
+
+  const selectWord = useCallback(
+    (word: string) => {
+      setSelectedCandidate(word);
+      setLetters(
+        (currentLetters: string) =>
+          currentLetters.slice(0, currentRow * wordLength) + word
+      );
+    },
+    [currentRow, wordLength]
+  );
 
   const restartGame = () => {
     setLetters("");
@@ -167,6 +175,12 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
       console.log(wordCandidates);
     }
   }, [wordCandidates, guessHistory]);
+
+  useEffect(() => {
+    if (hasSolution) {
+      selectWord(wordCandidates[0]);
+    }
+  }, [hasSolution, selectWord, wordCandidates]);
 
   return (
     <div className="c-game">
@@ -196,7 +210,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
         {guessHistory.length > 0 ? (
           <>
             <label htmlFor="candidates" className="c-game-text">
-              WORD CANDIDATES:
+              {hasSolution ? "THE WORDLE IS: ": "WORD CANDIDATES: "}
             </label>
             <select
               name="candidates"
