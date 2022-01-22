@@ -19,6 +19,14 @@ const HelpContent = () => {
           Wordle-Helper will suggest possible solutions for the Wordle. Repeat
           the process to narrow the list down further!
         </p>
+        <p>
+          <em>
+            Note that Wordle-Helper will only ever suggest words that could be
+            the solution based on previous guesses. Sometimes a better strategy
+            is to guess a word that cannot be solution in the hopes of narrowing
+            down the list even more
+          </em>
+        </p>
         <hr />
         <p>
           <strong>
