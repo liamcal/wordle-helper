@@ -124,7 +124,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
     (keyEvent: KeyboardEvent) => {
       const key = keyEvent.key;
       if (key.length === 1 && key.match(/[a-z]/i)) {
-        safeAddLetter(key);
+        safeAddLetter(key.toUpperCase());
       } else if (key === "Backspace") {
         safeRemoveLetter();
       } else if (key === "Enter") {

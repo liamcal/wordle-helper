@@ -28,7 +28,7 @@ const letterMatchesState = (
 };
 
 const wordMatchesGuess = (candidateWord: string, guess: ProcessedGuess) => {
-  const candidateLetters = candidateWord.split("");
+  const candidateLetters = candidateWord.toUpperCase().split("");
   for (const [i, letter] of candidateLetters.entries()) {
     const matchState = letterMatchesState(
       letter,
@@ -76,7 +76,7 @@ const useWordleSolver = (wordLength: number) => {
       return;
     }
 
-    const guessLetters = guess.word.split("");
+    const guessLetters = guess.word.toUpperCase().split("");
 
     const bannedLetters = guessLetters.filter(
       (_letter: string, i: number) =>
@@ -87,7 +87,12 @@ const useWordleSolver = (wordLength: number) => {
         guess.letterStates[i] === GameTileState.PRESENT
     );
 
-    const processedGuess = { ...guess, bannedLetters, requiredLetters };
+    const processedGuess = {
+      ...{ ...guess, word: guess.word.toUpperCase() },
+      bannedLetters,
+      requiredLetters,
+    };
+
     setWordCandidates((currentCandidates: string[]) =>
       currentCandidates.filter((word: string) =>
         wordMatchesGuess(word, processedGuess)
