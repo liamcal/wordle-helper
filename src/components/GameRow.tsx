@@ -6,6 +6,7 @@ interface GameRowProps {
   tileStates: GameTileState[];
   wordLength: number;
   rowNumber: number;
+  isActiveRow: boolean;
   updateTileState: (tile: number) => (newState: GameTileState) => void;
 }
 
@@ -14,6 +15,7 @@ const GameRow = ({
   tileStates,
   wordLength,
   rowNumber,
+  isActiveRow,
   updateTileState,
 }: GameRowProps) => {
 
@@ -22,6 +24,7 @@ const GameRow = ({
       {[...Array(wordLength).keys()].map((tileNumber: number) => (
         <GameTile
           key={`row-${rowNumber}-tile-${tileNumber}`}
+          isActiveRow={isActiveRow}
           letter={word.charAt(tileNumber)}
           tileState={tileStates[tileNumber]}
           setTileState={updateTileState(tileNumber)}

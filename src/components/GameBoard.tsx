@@ -201,6 +201,7 @@ const GameBoard = ({ rowCount, wordLength }: GameBoardProps) => {
               updateTileState={updateTileStateForRow(rowNumber)}
               wordLength={wordLength}
               rowNumber={rowNumber}
+              isActiveRow={rowNumber === currentRow}
               word={words[rowNumber]}
             />
           ))}

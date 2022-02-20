@@ -10,6 +10,7 @@ enum GameTileState {
 interface GameTileProps {
   tileState: GameTileState;
   setTileState: (newState: GameTileState) => void;
+  isActiveRow: boolean;
   letter?: string;
 }
 
@@ -29,10 +30,10 @@ const toggleTileState = (currentState: GameTileState) => {
   return GameTileState.UNKNOWN;
 };
 
-const GameTile = ({ tileState, setTileState, letter = "" }: GameTileProps) => {
+const GameTile = ({ tileState, setTileState, isActiveRow, letter = "" }: GameTileProps) => {
   const onTileClick = (event: React.MouseEvent) => {
     event.preventDefault();
-    if (letter) {
+    if (isActiveRow && letter) {
       setTileState(toggleTileState(tileState));
     }
   };
