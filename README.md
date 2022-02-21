@@ -1,6 +1,6 @@
 # Wordle-Helper
 
-A helper web-app for popular language game [Wordle](https://www.powerlanguage.co.uk/wordle/)
+A helper web-app for popular language game [Wordle](https://www.nytimes.com/games/wordle)
 
 Available online at https://liamcal.github.io/wordle-helper/
 
