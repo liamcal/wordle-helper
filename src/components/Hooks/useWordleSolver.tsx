@@ -114,7 +114,7 @@ const useWordleSolver = (wordLength: number) => {
   };
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/wordlewords.txt`)
+    fetch(`${process.env.PUBLIC_URL}/nytimeswords.txt`)
       .then((res: Response) => res.text())
       .then((text: string) => {
         processWords(text);
