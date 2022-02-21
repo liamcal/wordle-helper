@@ -27,16 +27,20 @@ const HelpContent = () => {
             down the list even more
           </em>
         </p>
+        <p>
+          <strong>NEW: </strong>Wordle-Helper has been updated to incorporate the
+          changes made to the original word list by the NYT.
+        </p>
         <hr />
         <p>
           <strong>
             Play Wordle for free at{" "}
             <a
-              href="https://www.powerlanguage.co.uk/wordle/"
+              href="https://www.nytimes.com/games/wordle"
               target="_blank"
               rel="noreferrer"
             >
-              https://www.powerlanguage.co.uk/wordle/
+              https://www.nytimes.com/games/wordle
             </a>
           </strong>
         </p>

@@ -32,7 +32,7 @@ const GameHeader = ({ onInfoClick, onRestartClick }: GameHeaderProps) => {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://www.powerlanguage.co.uk/wordle/"
+          href="https://www.nytimes.com/games/wordle"
         >
           Wordle
         </a>
